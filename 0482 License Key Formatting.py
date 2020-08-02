@@ -27,3 +27,17 @@ class SolutionTwo:
         reverse = S.replace('-', '').upper()[::-1]
         reverse_parts = [reverse[i:i + K][::-1] for i in range(0, len(reverse), K)]
         return '-'.join(reverse_parts[::-1])
+    
+# Version 3
+class SolutionThree:
+    def licenseKeyFormatting(self, S: str, K: int) -> str:
+        part, parts = '', []
+        
+        for idx, val in enumerate(S.replace('-', '')[::-1]):
+            if len(part) == K:
+                parts.append(part)
+                part = ''
+            part = val.upper() + part
+        if part != '':
+            parts.append(part)
+        return '-'.join(parts[::-1])
